@@ -44,7 +44,10 @@ Insert into "Employee"."Employee"(id,name,authentication_key) Values
   	SELECT ROW_NUMBER() OVER(ORDER BY id) row_id, id
   	FROM "Employee"."Employee"
   	WHERE authentication_key is null ;
-    
+	
+-- create index on row id    
+CREATE INDEX ON emp_auth_to_be_updated(row_id);
+
 -- Procedure
 CREATE OR REPLACE PROCEDURE "Employee".update_auth_token() 
 LANGUAGE plpgsql 
